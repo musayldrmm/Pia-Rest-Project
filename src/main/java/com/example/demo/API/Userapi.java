@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -17,8 +18,14 @@ public class Userapi {
     public User add(@RequestBody User user){
 return user_repo.save(user);
     }
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<List<User>> alluser(){
         return ResponseEntity.ok(user_repo.findAll());
     }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Optional<User>> getuser(@PathVariable String id){
+        return ResponseEntity.ok(user_repo.findById(id));
+    }
+
 }
