@@ -1,5 +1,6 @@
 package com.example.demo.API;
 
+import com.example.demo.HashPassword;
 import com.example.demo.entity.User;
 import com.example.demo.repository.User_repo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,10 @@ return user_repo.save(user);
     }
     @PostMapping("/login")
     public User loginuser(@RequestBody User user){
+        HashPassword hashing=new HashPassword();
+        String passw=user.getPassword();
+        hashing.setPasswordToHash(passw);
+        user.setPassword(hashing.getPasswordToHash());
       User login= user_repo.findByEmail(user.getEmail());
       User password = user_repo.findByPassword(user.getPassword());
       if (login!=null){
