@@ -18,6 +18,10 @@ public class Userapi {
     public User add(@RequestBody User user){
 return user_repo.save(user);
     }
+    @PostMapping("/login")
+    public ResponseEntity<List<User>> loginuser(@RequestBody User user){
+        return ResponseEntity.ok(user_repo.findAll());
+    }
     @GetMapping("/all")
     public ResponseEntity<List<User>> alluser(){
         return ResponseEntity.ok(user_repo.findAll());
@@ -26,5 +30,10 @@ return user_repo.save(user);
     @GetMapping("/{id}")
     public ResponseEntity<Optional<User>> getuser(@PathVariable String id){
         return ResponseEntity.ok(user_repo.findById(id));
+    }
+    @GetMapping("/remove/{id}")
+    public String deleteuser(@PathVariable String id){
+   user_repo.deleteById(id);
+   return "user deleted with id : "+id;
     }
 }
