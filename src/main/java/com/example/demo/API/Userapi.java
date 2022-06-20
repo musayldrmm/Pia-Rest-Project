@@ -1,6 +1,6 @@
 package com.example.demo.API;
 
-import com.example.demo.HashPassword;
+import com.example.demo.hashpassword.HashPassword;
 import com.example.demo.entity.User;
 import com.example.demo.repository.User_repo;
 import org.springframework.beans.factory.annotation.Autowired;

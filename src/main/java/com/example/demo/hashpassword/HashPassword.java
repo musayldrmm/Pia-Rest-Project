@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.hashpassword;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
