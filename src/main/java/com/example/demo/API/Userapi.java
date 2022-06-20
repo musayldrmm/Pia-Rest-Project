@@ -23,9 +23,8 @@ return user_repo.save(user);
         return ResponseEntity.ok(user_repo.findAll());
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Optional<User>> getuser(@PathVariable String id){
         return ResponseEntity.ok(user_repo.findById(id));
     }
-
 }
