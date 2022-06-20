@@ -19,9 +19,24 @@ public class Userapi {
 return user_repo.save(user);
     }
     @PostMapping("/login")
-    public ResponseEntity<List<User>> loginuser(@RequestBody User user){
-        return ResponseEntity.ok(user_repo.findAll());
-    }
+    public User loginuser(@RequestBody User user){
+      User login= user_repo.findByEmail(user.getEmail());
+      User password = user_repo.findByPassword(user.getPassword());
+      if (login!=null){
+          if(password!=null){
+              System.out.println("LOGİN OLDUN");
+              return login;
+          }
+      else{
+              System.out.println("Şifren  yanlış");
+          return null;
+          }
+      }
+      else{
+System.out.println("EMail yanluş");
+          return null;
+      }
+   }
     @GetMapping("/all")
     public ResponseEntity<List<User>> alluser(){
         return ResponseEntity.ok(user_repo.findAll());
