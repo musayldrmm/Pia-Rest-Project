@@ -16,6 +16,10 @@ public class Userapi {
     private User_repo user_repo;
     @PostMapping()
     public User add(@RequestBody User user){
+         HashPassword hashing=new HashPassword();
+        String passw=user.getPassword();
+        hashing.setPasswordToHash(passw);
+        user.setPassword(hashing.getPasswordToHash());
 return user_repo.save(user);
     }
     @PostMapping("/login")
