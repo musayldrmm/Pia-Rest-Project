@@ -26,6 +26,11 @@ public ResponseEntity<List<Order>> alluser(){
 public ResponseEntity<List<Order>> Userorders(@PathVariable String username){
     return ResponseEntity.ok(OrderList.findByusername(username));
 }
+@GetMapping("/delete/{id}")
+public String deleteorder(@PathVariable String id){
+    OrderList.deleteById(id);
+    return "user deleted with id : "+id;
+}
 @PostMapping()
     public Order add(@RequestBody Order order){
 
