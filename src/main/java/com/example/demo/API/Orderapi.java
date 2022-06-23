@@ -22,18 +22,18 @@ private Order_repo OrderList;
 public ResponseEntity<List<Order>> alluser(){
     return ResponseEntity.ok(OrderList.findAll());
 }
-@GetMapping("/{name}")
-public ResponseEntity<Order> Userorders(@PathVariable String name){
-    return ResponseEntity.ok(OrderList.findByUsername(name));
+@GetMapping("/{username}")
+public ResponseEntity<List<Order>> Userorders(@PathVariable String username){
+    return ResponseEntity.ok(OrderList.findByusername(username));
 }
 @PostMapping()
     public Order add(@RequestBody Order order){
 
-    LocalDateTime now = LocalDateTime.now();
+    //LocalDateTime now = LocalDateTime.now();
 
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd' 'HH:mm:ss");
+    //ateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd' 'HH:mm:ss");
 
-    order.setOrdertime(now.format(formatter));
+    //order.setOrdertime(now.format(formatter));
     String email = order.getUseremail();
     String restoranadi=order.getRestauranName();
     String Time = order.getOrdertime();

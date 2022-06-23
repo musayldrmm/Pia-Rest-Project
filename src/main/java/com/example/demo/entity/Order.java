@@ -15,9 +15,10 @@ import java.util.Date;
     public class Order {
     @Id
     private String id;
+
     private String useremail;
     private String username;
-    private String userSurname;
+    private String usersurname;
     private String ordertime;
     private String restauranName;
 }

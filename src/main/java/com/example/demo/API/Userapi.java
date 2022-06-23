@@ -42,6 +42,7 @@ System.out.println("EMail yanluş");
           return null;
       }
    }
+
     @GetMapping("/all")
     public ResponseEntity<List<User>> alluser(){
         return ResponseEntity.ok(user_repo.findAll());
