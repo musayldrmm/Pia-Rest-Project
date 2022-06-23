@@ -35,10 +35,11 @@ public ResponseEntity<List<Order>> Userorders(@PathVariable String username){
 
     //order.setOrdertime(now.format(formatter));
     String email = order.getUseremail();
-    String restoranadi=order.getRestauranName();
-    String Time = order.getOrdertime();
+    String restoranadi=order.getRestauranname();
+    String TimeD = order.getOrdertimeday();
+    String TimeH=order.getOrdertimehour();
     senderservice.sendEmail(email,"Rezervasyon başarılı"
-            ,restoranadi+" adlı restoranda "+ Time+ " tarihinde yeriniz rezerve edildi");
+            ,restoranadi+" adlı restoranda "+ TimeD+" günü saat "+TimeH +" `de yeriniz rezerve edildi");
 
     return OrderList.save(order);
     }

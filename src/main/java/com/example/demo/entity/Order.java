@@ -19,7 +19,8 @@ import java.util.Date;
     private String useremail;
     private String username;
     private String usersurname;
-    private String ordertime;
-    private String restauranName;
+    private String ordertimeday;
+    private String ordertimehour;
+    private String restauranname;
 }
 
