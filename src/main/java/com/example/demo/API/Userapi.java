@@ -3,16 +3,20 @@ package com.example.demo.API;
 import com.example.demo.hashpassword.HashPassword;
 import com.example.demo.entity.User;
 import com.example.demo.repository.User_repo;
+import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
 public class Userapi {
+    @Autowired
+    private HttpSession httpSession;
     @Autowired
     private User_repo user_repo;
     @PostMapping()
@@ -21,15 +25,20 @@ public class Userapi {
         user.setPassword(hashing.getPasswordToHash());
         return user_repo.save(user);
     }
-    @PostMapping("/login")
-    public User loginuser(@RequestBody User user){
+   @PostMapping("/login")
+    public User loginuser(@RequestBody User user,HttpSession httpsession){
         HashPassword hashing=new HashPassword(user.getPassword());
         user.setPassword(hashing.getPasswordToHash());
       User login= user_repo.findByEmail(user.getEmail());
-      User password = user_repo.findByPassword(user.getPassword());
+
       if (login!=null){
-          if(password!=null){
-              System.out.println("LOGİN OLDUN");
+String kullanıcışifre=login.getPassword();
+String loginşifre=user.getPassword();
+Boolean checkpass=kullanıcışifre.equals(loginşifre);
+          if(checkpass==true){
+              httpsession.setAttribute("Set-Cookie",login.getId());
+              System.out.println("LOGİN OLDUN"+login.getId());
+
               return login;
           }
       else{
